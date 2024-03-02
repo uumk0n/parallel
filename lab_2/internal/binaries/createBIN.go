@@ -23,12 +23,6 @@ func CreateBin(filename string) {
 	// Создаем генератор случайных чисел
 	rand.New(rand.NewSource(time.Now().UnixNano()))
 
-	// Записываем размерность матрицы в файл
-	err = binary.Write(file, binary.LittleEndian, int32(n))
-	if err != nil {
-		panic(err)
-	}
-
 	// Записываем саму матрицу в файл
 	for i := 0; i < n; i++ {
 		for j := 0; j < n; j++ {
