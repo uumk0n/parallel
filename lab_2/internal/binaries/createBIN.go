@@ -1,4 +1,4 @@
-package main
+package binaries
 
 import (
 	"encoding/binary"
@@ -39,4 +39,40 @@ func CreateBin(filename string) {
 			}
 		}
 	}
+}
+
+func ReadBin(filename string) [][]int {
+	// Открываем файл для чтения
+	file, err := os.Open(filename)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	// Читаем размерность матрицы из файла
+	var n int32
+	err = binary.Read(file, binary.LittleEndian, &n)
+	if err != nil {
+		panic(err)
+	}
+
+	// Создаем матрицу для хранения данных из файла
+	matrix := make([][]int, n)
+	for i := range matrix {
+		matrix[i] = make([]int, n)
+	}
+
+	// Считываем данные из файла в матрицу
+	for i := 0; i < int(n); i++ {
+		for j := 0; j < int(n); j++ {
+			var num int32
+			err := binary.Read(file, binary.LittleEndian, &num)
+			if err != nil {
+				panic(err)
+			}
+			matrix[i][j] = int(num)
+		}
+	}
+
+	return matrix
 }
