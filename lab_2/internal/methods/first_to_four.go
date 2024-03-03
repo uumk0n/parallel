@@ -1,8 +1,13 @@
 package methods
 
-import "github.com/uumk0n/parallel/lab_2/internal/binaries"
+import (
+	"fmt"
+	"time"
 
-func Row_by_col(bin_a_name, bin_b_name string) [][]int {
+	"github.com/uumk0n/parallel/lab_2/internal/binaries"
+)
+
+func RowByCol(bin_a_name, bin_b_name string) [][]int {
 	matrix_a := binaries.ReadBin(bin_a_name)
 	matrix_b := binaries.ReadBin(bin_b_name)
 	n := len(matrix_a)
@@ -21,7 +26,7 @@ func Row_by_col(bin_a_name, bin_b_name string) [][]int {
 	return matrix_c
 }
 
-func Row_by_col_transposed(bin_a_name, bin_b_name string) [][]int {
+func RowByColTransposed(bin_a_name, bin_b_name string) [][]int {
 	matrix_a := binaries.ReadBin(bin_a_name)
 	matrix_b := binaries.ReadBin(bin_b_name)
 	n := len(matrix_a)
@@ -40,7 +45,7 @@ func Row_by_col_transposed(bin_a_name, bin_b_name string) [][]int {
 	return matrix_c
 }
 
-func Row_by_row(bin_a_name, bin_b_name string) [][]int {
+func RowByRow(bin_a_name, bin_b_name string) [][]int {
 	matrix_a := binaries.ReadBin(bin_a_name)
 	matrix_b := binaries.ReadBin(bin_b_name)
 	n := len(matrix_a)
@@ -59,7 +64,7 @@ func Row_by_row(bin_a_name, bin_b_name string) [][]int {
 	return matrix_c
 }
 
-func Row_by_row_transposed(bin_a_name, bin_b_name string) [][]int {
+func RowByRowTransposed(bin_a_name, bin_b_name string) [][]int {
 	matrix_a := binaries.ReadBin(bin_a_name)
 	matrix_b := binaries.ReadBin(bin_b_name)
 	n := len(matrix_a)
@@ -76,4 +81,30 @@ func Row_by_row_transposed(bin_a_name, bin_b_name string) [][]int {
 		}
 	}
 	return matrix_c
+}
+
+func TestOneToFourMethods() {
+
+	matrixName := "matrix"
+	binAName := "matrixA.bin"
+	binBName := "matrixB.bin"
+	start := time.Now()
+	_ = RowByCol(binAName, binBName)
+	elapsed := time.Since(start)
+	fmt.Printf("Row by Column\t%s\t%s\n", matrixName, elapsed)
+
+	start = time.Now()
+	_ = RowByColTransposed(binAName, binBName)
+	elapsed = time.Since(start)
+	fmt.Printf("Row by Column (Transposed)\t%s\t%s\n", matrixName, elapsed)
+
+	start = time.Now()
+	_ = RowByRow(binAName, binBName)
+	elapsed = time.Since(start)
+	fmt.Printf("Row by Row\t%s\t%s\n", matrixName, elapsed)
+
+	start = time.Now()
+	_ = RowByRowTransposed(binAName, binBName)
+	elapsed = time.Since(start)
+	fmt.Printf("Row by Row (Transposed)\t%s\t%s\n", matrixName, elapsed)
 }
