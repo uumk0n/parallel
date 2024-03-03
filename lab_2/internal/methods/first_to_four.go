@@ -86,8 +86,10 @@ func RowByRowTransposed(bin_a_name, bin_b_name string) [][]int {
 func TestOneToFourMethods() {
 
 	matrixName := "matrix"
+
 	binAName := "matrixA.bin"
 	binBName := "matrixB.bin"
+
 	start := time.Now()
 	_ = RowByCol(binAName, binBName)
 	elapsed := time.Since(start)
