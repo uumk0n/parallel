@@ -2,19 +2,19 @@ package binaries
 
 import (
 	"encoding/binary"
+	"fmt"
 	"math/rand"
 	"os"
 	"time"
 )
 
-func CreateBin(filename string) {
+func CreateBin(filename string, n int) {
 	// Задаем размерность матрицы и диапазон случайных чисел
-	const n = 5
 	const min = 0
 	const max = 100
 
 	// Создаем файл для записи
-	file, err := os.Create(filename)
+	file, err := os.Create(fmt.Sprintf("%s%d.bin", filename, n))
 	if err != nil {
 		panic(err)
 	}
