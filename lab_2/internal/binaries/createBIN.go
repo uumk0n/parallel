@@ -20,6 +20,11 @@ func CreateBin(filename string, n int) {
 	}
 	defer file.Close()
 
+	err = binary.Write(file, binary.LittleEndian, int32(n))
+	if err != nil {
+		panic(err)
+	}
+
 	// Создаем генератор случайных чисел
 	rand.New(rand.NewSource(time.Now().UnixNano()))
 
