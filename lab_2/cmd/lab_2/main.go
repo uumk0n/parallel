@@ -26,7 +26,8 @@ func main() {
 		binBName := fmt.Sprintf("matrixB%d.bin", size)
 
 		start := time.Now()
-		_ = methods.RowByCol(binAName, binBName)
+		matr := methods.RowByCol(binAName, binBName)
+		fmt.Println(matr)
 		elapsed := time.Since(start)
 		fmt.Printf("1)%s\n", elapsed)
 
